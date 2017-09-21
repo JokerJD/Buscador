@@ -1,0 +1,25 @@
+<div class="container">
+  <h1>Locations</h1>
+  <%= will_paginate @locations %>
+  <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Lat</th>
+      <th>Lng</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @locations.each do |location| %>
+        <tr>
+          <td><%= location.zip_code %></td>
+          <td><%= location.lat %></td>
+          <td><%= location.lng %></td>
+          <td><a class="waves-effect waves-light btn" href="search/new/?q=<%= location.id %>">Get</a></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+

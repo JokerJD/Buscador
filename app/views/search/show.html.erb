@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>Results</h1>
+  <%= will_paginate @results %>
+  <ul>
+    <% @results.each do |r| %>
+    <li><%= r.name %> - <%= r.address %></li>
+    <% end %>
+  </ul>
+</div>

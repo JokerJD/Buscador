@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Buscador</title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+<nav>
+  <div class="nav-wrapper blue lighten-2">
+    <div class="container">
+      <a href="/" class="brand-logo">Buscador</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/">Home</a></li>
+        <% if user_signed_in? %>
+            <li><%= current_user.name %></li>
+            <li><%= link_to 'Sign out', destroy_user_session_path, method: 'delete' %></li>
+      <% else %>
+            <li><a href="/users/sign_in">Sign in</a></li>
+            <li><a href="/users/sign_up">Sign up</a></li>
+      <% end %>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li><a href="/">Home</a></li>
+        <% if user_signed_in? %>
+            <li><a><%= current_user.name %></a></li>
+            <li><%= link_to 'Sign out', destroy_user_session_path, method: 'delete' %></li>
+        <% else %>
+            <li><a href="/users/sign_in">Sign in</a></li>
+            <li><a href="/users/sign_up">Sign up</a></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <%= yield %>
+</div>
+</body>
+</html>
