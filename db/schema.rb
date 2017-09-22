@@ -10,15 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170912160815) do
+ActiveRecord::Schema.define(version: 20170920005014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "leads", force: :cascade do |t|
+    t.string "gg_id"
+    t.string "place_id"
+    t.string "name"
+    t.string "geometry"
+    t.string "address"
+    t.string "website"
+    t.string "location_id"
+    t.string "city"
+    t.string "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gg_id"], name: "index_leads_on_gg_id"
+    t.index ["location_id"], name: "index_leads_on_location_id"
+  end
 
   create_table "locations", force: :cascade do |t|
     t.string "zip_code"
     t.string "lat"
     t.string "lng"
+    t.string "city"
+    t.string "state"
+    t.string "name"
+    t.string "address"
+    t.string "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "name"
+    t.string "rows"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -7,16 +7,17 @@ class SearchController < ApplicationController
   def new
     @target = Location.find(params[:q])
     @response = helpers.get_spots(@target.lat, @target.lng)
+
     helpers.save_db(@response)
     redirect_to search_show_url
   end
 
   def show
-    @results = Lead.paginate(:page => params[:page])
+    @leads = Lead.paginate(:page => params[:page])
 
     respond_to do |format|
       format.html
-      format.csv { send_data @results.to_csv, filename: "Leads-#{Date.today}.csv" }
+      format.csv { send_data @leads.to_csv, filename: "Leads-#{Date.today}.csv" }
     end
   end
 

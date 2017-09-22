@@ -1,11 +1,13 @@
 <div class="container">
-  <%= will_paginate @locations %>
+  <%= will_paginate @projects %>
+
+  <a href="/new" class="secondary-content">Add</a>
 
   <ul class="collection with-header">
     <li class="collection-header"><h4>Projects</h4></li>
-    <% @locations.each do |location| %>
+    <% @projects.each do |project| %>
         <li class="collection-item">
-          <div><%= location.zip_code %><a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div>
+          <div><%= project.name %><a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div>
         </li>
     <% end %>
   </ul>

@@ -18,7 +18,10 @@ module SearchHelper
             name: d.name,
             #geometry: d.geometry,
             address: d.vicinity,
-            website: d.website
+            website: d.website,
+            location_id: @target.id,
+            city: @target.city,
+            state: @target.state
         )
       end
     end

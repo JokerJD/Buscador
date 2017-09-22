@@ -1,10 +1,9 @@
 <div class="container">
   <h1>Results</h1>
-  <button><a href="/search/show.csv">Export</a></button>
   <%= will_paginate @leads %>
   <ul>
     <% @leads.each do |lead| %>
-    <li><%= lead.name %> - <%= lead.address %></li>
+        <li><%= lead.name %> - <%= lead.address %></li>
     <% end %>
   </ul>
 </div>
