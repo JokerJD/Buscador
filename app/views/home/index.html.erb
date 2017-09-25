@@ -1,6 +1,11 @@
 <div class="container">
   <%= will_paginate @projects %>
-
+  <div>
+    <%= form_for :file_upload, :html => {:multipart => true} do |f| %>
+        <%= f.file_field :my_file %>
+        <%= f.submit "Upload" %>
+    <% end %>
+  </div>
   <a href="/new" class="secondary-content">Add</a>
 
   <ul class="collection with-header">

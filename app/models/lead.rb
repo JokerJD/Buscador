@@ -1,5 +1,6 @@
 class Lead < ApplicationRecord
-  #belongs_to :location
+  belongs_to :location
+  #has_one :project, through :locations
   #validates :location_id, presence: true
 
   def self.to_csv

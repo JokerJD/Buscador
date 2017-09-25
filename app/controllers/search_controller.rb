@@ -1,5 +1,3 @@
-require 'open-uri'
-
 class SearchController < ApplicationController
   before_action :authenticate_user!
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
@@ -9,6 +7,13 @@ class SearchController < ApplicationController
     @response = helpers.get_spots(@target.lat, @target.lng)
 
     helpers.save_db(@response)
+    redirect_to search_show_url
+  end
+
+  def search
+    @project = Project.find(params[:id])
+    SearchWorker.perform_async(@project)
+
     redirect_to search_show_url
   end
 

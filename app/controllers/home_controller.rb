@@ -3,17 +3,12 @@ class HomeController < ApplicationController
 
   def index
     @projects = Project.paginate(:page => params[:page])
-
-  end
-  def locations
-    @locations = Location.paginate(:page => params[:page])
   end
 
-  def new
-    project = Project.new
-    project.name = 'test'
-    project.save
+  def file_upload
+    UploadWorker.perform_async(params[:file_upload])
 
     redirect_to root_path
   end
+
 end
