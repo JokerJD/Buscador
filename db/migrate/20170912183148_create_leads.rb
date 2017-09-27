@@ -10,7 +10,7 @@ class CreateLeads < ActiveRecord::Migration[5.1]
       t.string :city
       t.string :state
 
-      t.references :location_id
+      t.references :location
       t.timestamps
     end
     add_index :leads, :gg_id

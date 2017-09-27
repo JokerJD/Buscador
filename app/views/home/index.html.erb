@@ -6,13 +6,12 @@
         <%= f.submit "Upload" %>
     <% end %>
   </div>
-  <a href="/new" class="secondary-content">Add</a>
 
   <ul class="collection with-header">
     <li class="collection-header"><h4>Projects</h4></li>
     <% @projects.each do |project| %>
         <li class="collection-item">
-          <div><%= project.name %><a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div>
+          <div><%= project.name %><a href="search/<%= project.id %>" class="secondary-content"><i class="material-icons">send</i></a></div>
         </li>
     <% end %>
   </ul>

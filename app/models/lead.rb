@@ -1,7 +1,5 @@
 class Lead < ApplicationRecord
   belongs_to :location
-  #has_one :project, through :locations
-  #validates :location_id, presence: true
 
   def self.to_csv
     attributes = %w{gg_id place_id name geometry address website}

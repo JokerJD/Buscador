@@ -9,7 +9,7 @@ class CreateLocations < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :address
 
-      t.references :project_id
+      t.references :project
       t.timestamps
     end
   end

@@ -6,9 +6,11 @@ class HomeController < ApplicationController
   end
 
   def file_upload
-    UploadWorker.perform_async(params[:file_upload])
+    project = Project.new
+    project.name = params[:my_file].original_filename
+    UploadWorker.perform_async(params[:my_file])
 
-    redirect_to root_path
+    redirect_to root_url
   end
 
 end

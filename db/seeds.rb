@@ -4,7 +4,7 @@ p = Project.new
 p.name = 'test1'
 p.save
 
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'zip_codes_states.csv'))
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'Test1.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
   t = Location.new
