@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  get 'search/show'
-  get 'search/new'
+  get '/show', to: 'lead#show'
 
-  get 'new', to: 'home#new'
+  get '/search/:id', to: 'search#search'
 
   devise_for :users
-
   root 'home#index'
+
 end

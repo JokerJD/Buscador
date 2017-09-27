@@ -22,9 +22,9 @@ ActiveRecord::Schema.define(version: 20170920005014) do
     t.string "geometry"
     t.string "address"
     t.string "website"
-    t.string "location_id"
     t.string "city"
     t.string "state"
+    t.bigint "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["gg_id"], name: "index_leads_on_gg_id"
@@ -39,9 +39,10 @@ ActiveRecord::Schema.define(version: 20170920005014) do
     t.string "state"
     t.string "name"
     t.string "address"
-    t.string "project_id"
+    t.bigint "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_locations_on_project_id"
   end
 
   create_table "projects", force: :cascade do |t|
