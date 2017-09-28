@@ -1,0 +1,19 @@
+<div class="container">
+  <%= will_paginate @projects %>
+  <div>
+    <%= form_for :file_upload, :html => {:multipart => true} do |f| %>
+        <%= f.file_field :my_file %>
+        <%= f.submit "Upload" %>
+    <% end %>
+  </div>
+
+  <ul class="collection with-header">
+    <li class="collection-header"><h4>Projects</h4></li>
+    <% @projects.each do |project| %>
+        <li class="collection-item">
+          <div><%= project.name %><a href="search/<%= project.id %>" class="secondary-content"><i class="material-icons">send</i></a></div>
+        </li>
+    <% end %>
+  </ul>
+</div>
+
