@@ -4,7 +4,7 @@ class SearchWorker
   require 'open-uri'
 
   def perform(project)
-    @locations = Location.find_by(project_id: project.id)
+    @locations = Location.where(project: project)
     @api_key = 'AIzaSyAaGTZYJjsDPGNL7zreKxiAoOAs2uLg2Zg'
 
     @locations.each do |location|
