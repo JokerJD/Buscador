@@ -15,6 +15,7 @@ class SaveWorker
             address: d.vicinity,
             website: d.website
         )
+        puts "#{Lead.id} saved"
       end
     end
   end

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   require 'sidekiq/web'
+  
   get '/show', to: 'lead#show'
 
   get '/search/:project_id', to: 'search#search'

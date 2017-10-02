@@ -1,6 +1,6 @@
 class LeadController < ApplicationController
   def show
-    @leads = Lead.paginate(:page => params[:page])
+    @leads = Lead.all.paginate(:page => params[:page])
 
     respond_to do |format|
       format.html
