@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project: one
+  result_count: 1
+  leads_generated_count: 1
+
+two:
+  project: two
+  result_count: 1
+  leads_generated_count: 1

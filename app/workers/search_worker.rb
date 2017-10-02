@@ -7,32 +7,31 @@ class SearchWorker
     @project = Project.find(project)
     @locations = Location.where(project: @project)
 
-    @api_key = 'AIzaSyAaGTZYJjsDPGNL7zreKxiAoOAs2uLg2Zg'
     @locations.each do |location|
-      @client = GooglePlaces::Client.new(@api_key)
-      @results = @client.spots(location.lat, location.lng, :types => 'restaurant',
-                    :radius => 10000, multipage: true)
-      #SaveWorker.perform(location.id, @results)
+      @client = GooglePlaces::Client.new('AIzaSyAaGTZYJjsDPGNL7zreKxiAoOAs2uLg2Zg')
+      @results = @client.spots(location.lat, location.lng, :types => 'restaurant',:radius => 10000, multipage: true)
 
-      print @results
-      @results.results.each do |d|
-        if Lead.find_by(gg_id: d.id)
-          next
-        else
-          Lead.create(
-              location_id: location.id,
-              gg_id: d.id,
-              place_id: d.place_id,
-              name: d.name,
-              #geometry: d.geometry,
-              address: d.vicinity,
-              website: d.website
-          )
-          puts "#{Lead.id} saved"
+      q = Query.new()
+      q.project = @project
+      q.result_count = @results.count
+      leads_before = Lead.count
+
+      @results.each do |d|
+        if d.place_id != nil
+          unless Lead.find_by(place_id: d.place_id)
+            Lead.create(
+                location_id: location.id,
+                place_id: d.place_id,
+                name: d.name,
+                address: d.vicinity,
+                website: d.website
+            )
+          end
         end
       end
 
-      sleep 0.5
+      q.leads_generated_count = Lead.count - leads_before
+      q.save!
     end
   end
 
