@@ -17,7 +17,7 @@ class SearchWorker
       leads_before = Lead.count
 
       @results.each do |d|
-        if d.place_id != nil
+        unless d.place_id.nil?
           unless Lead.find_by(place_id: d.place_id)
             Lead.create(
                 location_id: location.id,
